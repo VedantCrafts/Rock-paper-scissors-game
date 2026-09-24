@@ -1,10 +1,10 @@
 function getComputerChoice(){
-    let computer = Math.floor(Math.random()*3) + 1;
+    let computerchoice = Math.floor(Math.random()*3) + 1;
     
-    if(computer ===1){
+    if(computerchoice ===1){
         return "rock";
     }
-    else if(computer=== 2){
+    else if(computerchoice=== 2){
         return "paper";
     }
     else{
@@ -13,17 +13,49 @@ function getComputerChoice(){
 }
 
 function getHumanChoice(){
-    let human = +prompt("Enter 1 for rock\n2for paper\n3for scissors");
+    let humanchoice = prompt("Enter rock, paper or scissors");
+    humanchoice = humanchoice.toLowerCase();
     
-    if(human ===1){
+    if(humanchoice === "rock"){
         return "rock";
     }
-    else if(human=== 2){
+    else if(humanchoice=== "paper"){
         return "paper";
     }
     else{
         return "scicssors";    
     }   
 }
-let humanchoice = getHumanChoice(); 
-console.log(humanchoice);
+
+
+let humanscore = 0;
+let computerscore = 0;
+
+function playRound(HumanChoice,ComputerChoice){
+    if(HumanChoice === ComputerChoice){
+        console.log("Its a tie!");
+    }
+    else if(
+        (HumanChoice == "rock" && ComputerChoice=="scicssors") ||
+        (HumanChoice=="paper" && ComputerChoice=="rock") ||
+        (HumanChoice=="scicssors" && ComputerChoice=="paper")
+    ){
+        console.log(`You win ${HumanChoice} beats ${ComputerChoice}`); 
+        humanscore++; 
+    }
+    
+    else{
+        console.log(`You lose! ${ComputerChoice} beats ${HumanChoice}`);
+        computerscore++;
+    }
+}
+
+for(i = 0; i<5;i++){
+
+    let humanSelection = getHumanChoice(); 
+    let computerSelection = getComputerChoice();
+    
+    playRound(humanSelection,computerSelection);
+}
+
+console.log(`Final score: You ${humanscore} - Computer ${computerscore}`);

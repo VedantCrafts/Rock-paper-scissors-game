@@ -40,7 +40,7 @@ function playRound(HumanChoice, ComputerChoice) {
 }
 
 function handleRounds(HumanChoice) {
-    if (rounds >= 5) {
+    if (rounds > 6) {
         return;
     }
     else {
